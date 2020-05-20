@@ -11,15 +11,6 @@ export const router = [
       title: '首页', // 页面标题
       keepAlive: false // keep-alive 标识
     }
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('@/views/home/about'),
-    meta: {
-      title: '关于我',
-      keepAlive: false
-    }
   }
 ]
 
