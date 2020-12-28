@@ -1,8 +1,12 @@
 <!-- home -->
 <template>
-  <div class="app-container">
+  <div class="index-container">
     <div class="warpper">
-      <h1 class="demo-home__title"><img src="https://imgs.solui.cn/weapp/logo.png" /><span> VUE H5开发模板</span></h1>
+      <h1 class="demo-home__title">
+        <img src="https://www.sunniejs.cn/static/weapp/logo.png" /><span>
+          VUE H5开发模板</span
+        >
+      </h1>
       <h2 class="demo-home__desc">
         A vue h5 template with Vant UI
       </h2>
@@ -16,36 +20,38 @@ export default {
   data() {
     return {
       list: [
-        'Vue-cli4',
-        '配置多环境变量',
-        'VantUI 组件按需加载',
-        'Sass 全局样式',
-        'Webpack 4',
-        'Vuex 状态管理',
-        'Axios 封装及接口管理',
-        'Vue-router',
-        'Webpack 4 vue.config.js 基础配置',
-        '配置 proxy 跨域',
-        '配置 alias 别名',
-        '配置 打包分析',
-        '配置 externals 引入 cdn 资源',
-        '去掉 console.log',
-        'splitChunks 单独打包第三方模块',
-        '添加 IE 兼容',
-        'Eslint+Pettier 统一开发规范'
+        "Vue-cli4",
+        "配置多环境变量",
+        "VantUI 组件按需加载",
+        "Sass 全局样式",
+        "Webpack 4",
+        "Vuex 状态管理",
+        "Axios 封装及接口管理",
+        "Vue-router",
+        "Webpack 4 vue.config.js 基础配置",
+        "配置 proxy 跨域",
+        "配置 alias 别名",
+        "配置 打包分析",
+        "配置 externals 引入 cdn 资源",
+        "去掉 console.log",
+        "splitChunks 单独打包第三方模块",
+        "添加 IE 兼容",
+        "Eslint+Pettier 统一开发规范"
       ]
-    }
+    };
   },
 
   computed: {},
 
+  created() {},
+
   mounted() {},
 
   methods: {}
-}
+};
 </script>
 <style lang="scss" scoped>
-.app-container {
+.index-container {
   .warpper {
     padding: 12px;
     background: #fff;
