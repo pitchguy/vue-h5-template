@@ -4,10 +4,6 @@
 
 [查看 demo](https://solui.cn/vue-h5-template/#/) 建议手机端查看
 
-<p>
-  <img src="./static/demo.png" width="320" style="display:inline;">
-</p>
-
 ### Node 版本要求
 
 `Vue CLI` 需要 Node.js 8.9 或更高版本 (推荐 8.11.0+)。你可以使用 [nvm](https://github.com/nvm-sh/nvm) 或
@@ -100,16 +96,15 @@ VUE_APP_ENV = 'production'
 这里我们并没有定义很多变量，只定义了基础的 VUE_APP_ENV `development` `staging` `production`  
 变量我们统一在 `src/config/env.*.js` 里进行管理。
 
-这里有个问题，既然这里有了根据不同环境设置变量的文件，为什么还要去 config 下新建三个对应的文件呢？   
-**修改起来方便，不需
-要重启项目，符合开发习惯。**
+这里有个问题，既然这里有了根据不同环境设置变量的文件，为什么还要去 config 下新建三个对应的文件呢？  
+**修改起来方便，不需要重启项目，符合开发习惯。**
 
 config/index.js
 
 ```javascript
 // 根据环境引入不同配置 process.env.NODE_ENV
-const config = require('./env.' + process.env.VUE_APP_ENV)
-module.exports = config
+const config = require('./env.' + process.env.VUE_APP_ENV);
+module.exports = config;
 ```
 
 配置对应环境的变量，拿本地环境文件 `env.development.js` 举例，用户可以根据需求修改
@@ -121,16 +116,16 @@ module.exports = {
   baseUrl: 'http://localhost:9018', // 项目地址
   baseApi: 'https://test.xxx.com/api', // 本地api请求地址
   APPID: 'xxx',
-  APPSECRET: 'xxx'
-}
+  APPSECRET: 'xxx',
+};
 ```
 
 根据环境不同，变量就会不同了
 
 ```javascript
 // 根据环境不同引入不同baseApi地址
-import {baseApi} from '@/config'
-console.log(baseApi)
+import { baseApi } from '@/config';
+console.log(baseApi);
 ```
 
 [▲ 回顶部](#top)
@@ -153,14 +148,14 @@ Vant 中的样式默认使用`px`作为单位，如果需要使用`rem`单位，
 module.exports = {
   plugins: {
     autoprefixer: {
-      overrideBrowserslist: ['Android 4.1', 'iOS 7.1', 'Chrome > 31', 'ff > 31', 'ie >= 8']
+      overrideBrowserslist: ['Android 4.1', 'iOS 7.1', 'Chrome > 31', 'ff > 31', 'ie >= 8'],
     },
     'postcss-pxtorem': {
       rootValue: 37.5,
-      propList: ['*']
-    }
-  }
-}
+      propList: ['*'],
+    },
+  },
+};
 ```
 
 更多详细信息： [vant](https://youzan.github.io/vant/#/zh-CN/quickstart#jin-jie-yong-fa)
@@ -224,10 +219,9 @@ module.exports = {
 npm i babel-plugin-import -D
 ```
 
-在` babel.config.js` 设置
+在`babel.config.js` 设置
 
 ```javascript
-
 // 对于使用 babel7 的用户，可以在 babel.config.js 中配置
 const plugins = [
   [
@@ -235,16 +229,15 @@ const plugins = [
     {
       libraryName: 'vant',
       libraryDirectory: 'es',
-      style: true
+      style: true,
     },
-    'vant'
-  ]
-]
+    'vant',
+  ],
+];
 module.exports = {
-  presets: [['@vue/cli-plugin-babel/preset', {useBuiltIns: 'usage', corejs: 3}]],
-  plugins
-}
-
+  presets: [['@vue/cli-plugin-babel/preset', { useBuiltIns: 'usage', corejs: 3 }]],
+  plugins,
+};
 ```
 
 #### 使用组件
@@ -253,12 +246,12 @@ module.exports = {
 
 ```javascript
 // 按需全局引入 vant组件
-import Vue from 'vue'
-import {Button, List, Cell, Tabbar, TabbarItem} from 'vant'
-Vue.use(Button)
-Vue.use(Cell)
-Vue.use(List)
-Vue.use(Tabbar).use(TabbarItem)
+import Vue from 'vue';
+import { Button, List, Cell, Tabbar, TabbarItem } from 'vant';
+Vue.use(Button);
+Vue.use(Cell);
+Vue.use(List);
+Vue.use(Tabbar).use(TabbarItem);
 ```
 
 [▲ 回顶部](#top)
@@ -292,8 +285,8 @@ Vue.use(Tabbar).use(TabbarItem)
 `vue.config.js` 配置注入 `sass` 的 `mixin` `variables` 到全局，不需要手动引入 ,配置`$cdn`通过变量形式引入 cdn 地址
 
 ```javascript
-const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
-const defaultSettings = require('./src/config/index.js')
+const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV);
+const defaultSettings = require('./src/config/index.js');
 module.exports = {
   css: {
     extract: IS_PROD,
@@ -306,11 +299,11 @@ module.exports = {
           @import "assets/css/mixin.scss";
           @import "assets/css/variables.scss";
           $cdn: "${defaultSettings.$cdn}";
-          `
-      }
-    }
-  }
-}
+          `,
+      },
+    },
+  },
+};
 ```
 
 在 `main.js` 中引用全局样式（发现在上面的，prependData 里设置`@import "assets/css/index.scss";`并没有应用全局样式这里在
@@ -320,19 +313,19 @@ main.js 引入）
 
 ```javascript
 // 引入全局样式
-import '@/assets/css/index.scss'
+import '@/assets/css/index.scss';
 
 // 设置 js中可以访问 $cdn
 // 引入cdn
-import {$cdn} from '@/config'
-Vue.prototype.$cdn = $cdn
+import { $cdn } from '@/config';
+Vue.prototype.$cdn = $cdn;
 ```
 
 在 css 和 js 使用
 
 ```html
 <script>
-  console.log(this.$cdn)
+  console.log(this.$cdn);
 </script>
 <style lang="scss" scoped>
   .logo {
@@ -360,34 +353,34 @@ Vue.prototype.$cdn = $cdn
 `main.js` 引入
 
 ```javascript
-import Vue from 'vue'
-import App from './App.vue'
-import store from './store'
+import Vue from 'vue';
+import App from './App.vue';
+import store from './store';
 new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App)
-})
+  render: h => h(App),
+});
 ```
 
 使用
 
 ```html
 <script>
-  import {mapGetters} from 'vuex'
+  import { mapGetters } from 'vuex';
   export default {
     computed: {
-      ...mapGetters(['userName'])
+      ...mapGetters(['userName']),
     },
 
     methods: {
       // Action 通过 store.dispatch 方法触发
       doDispatch() {
-        this.$store.dispatch('setUserName', '真乖，赶紧关注公众号，组织都在等你~')
-      }
-    }
-  }
+        this.$store.dispatch('setUserName', '真乖，赶紧关注公众号，组织都在等你~');
+      },
+    },
+  };
 </script>
 ```
 
@@ -402,10 +395,10 @@ new Vue({
 前往:[vue.config.js 基础配置](#base)
 
 ```javascript
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 
-Vue.use(Router)
+Vue.use(Router);
 export const router = [
   {
     path: '/',
@@ -413,19 +406,19 @@ export const router = [
     component: () => import('@/views/home/index'), // 路由懒加载
     meta: {
       title: '首页', // 页面标题
-      keepAlive: false // keep-alive 标识
-    }
-  }
-]
+      keepAlive: false, // keep-alive 标识
+    },
+  },
+];
 const createRouter = () =>
   new Router({
     // mode: 'history', // 如果你是 history模式 需要配置 vue.config.js publicPath
     // base: '/app/',
-    scrollBehavior: () => ({y: 0}),
-    routes: router
-  })
+    scrollBehavior: () => ({ y: 0 }),
+    routes: router,
+  });
 
-export default createRouter()
+export default createRouter();
 ```
 
 更多:[Vue Router](https://router.vuejs.org/zh/)
@@ -441,17 +434,17 @@ export default createRouter()
 - `service.interceptors.response.use` 里可以对接口返回数据处理，比如 401 删除本地信息，重新登录
 
 ```javascript
-import axios from 'axios'
-import store from '@/store'
-import {Toast} from 'vant'
+import axios from 'axios';
+import store from '@/store';
+import { Toast } from 'vant';
 // 根据环境不同引入不同api地址
-import {baseApi} from '@/config'
+import { baseApi } from '@/config';
 // create an axios instance
 const service = axios.create({
   baseURL: baseApi, // url = base api url + request url
   withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
-})
+  timeout: 5000, // request timeout
+});
 
 // request 拦截器 request interceptor
 service.interceptors.request.use(
@@ -460,44 +453,44 @@ service.interceptors.request.use(
     if (!config.hideloading) {
       // loading
       Toast.loading({
-        forbidClick: true
-      })
+        forbidClick: true,
+      });
     }
     if (store.getters.token) {
-      config.headers['X-Token'] = ''
+      config.headers['X-Token'] = '';
     }
-    return config
+    return config;
   },
   error => {
     // do something with request error
-    console.log(error) // for debug
-    return Promise.reject(error)
+    console.log(error); // for debug
+    return Promise.reject(error);
   }
-)
+);
 // respone拦截器
 service.interceptors.response.use(
   response => {
-    Toast.clear()
-    const res = response.data
+    Toast.clear();
+    const res = response.data;
     if (res.status && res.status !== 200) {
       // 登录超时,重新登录
       if (res.status === 401) {
         store.dispatch('FedLogOut').then(() => {
-          location.reload()
-        })
+          location.reload();
+        });
       }
-      return Promise.reject(res || 'error')
+      return Promise.reject(res || 'error');
     } else {
-      return Promise.resolve(res)
+      return Promise.resolve(res);
     }
   },
   error => {
-    Toast.clear()
-    console.log('err' + error) // for debug
-    return Promise.reject(error)
+    Toast.clear();
+    console.log('err' + error); // for debug
+    return Promise.reject(error);
   }
-)
-export default service
+);
+export default service;
 ```
 
 #### 接口管理
@@ -511,9 +504,9 @@ export default service
 - `hideloading` 默认 `false`,设置为 `true` 后，不显示 loading ui 交互中有些接口不需要让用户感知
 
 ```javascript
-import qs from 'qs'
+import qs from 'qs';
 // axios
-import request from '@/utils/request'
+import request from '@/utils/request';
 //user api
 
 // 用户信息
@@ -522,8 +515,8 @@ export function getUserInfo(params) {
     url: '/user/userinfo',
     method: 'post',
     data: qs.stringify(params),
-    hideloading: true // 隐藏 loading 组件
-  })
+    hideloading: true, // 隐藏 loading 组件
+  });
 }
 ```
 
@@ -531,12 +524,12 @@ export function getUserInfo(params) {
 
 ```javascript
 // 请求接口
-import {getUserInfo} from '@/api/user.js'
+import { getUserInfo } from '@/api/user.js';
 
-const params = {user: 'sunnie'}
+const params = { user: 'sunnie' };
 getUserInfo(params)
   .then(() => {})
-  .catch(() => {})
+  .catch(() => {});
 ```
 
 [▲ 回顶部](#top)
@@ -556,7 +549,7 @@ publicPath: '/app/',
 ```
 
 ```javascript
-const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
+const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV);
 
 module.exports = {
   publicPath: './', // 署应用包时的基本 URL。 vue-router hash 模式使用
@@ -571,11 +564,11 @@ module.exports = {
     overlay: {
       //  当出现编译器错误或警告时，在浏览器中显示全屏覆盖层
       warnings: false,
-      errors: true
-    }
+      errors: true,
+    },
     // ...
-  }
-}
+  },
+};
 ```
 
 [▲ 回顶部](#top)
@@ -583,9 +576,9 @@ module.exports = {
 ### <span id="alias">✅ 配置 alias 别名 </span>
 
 ```javascript
-const path = require('path')
-const resolve = dir => path.join(__dirname, dir)
-const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
+const path = require('path');
+const resolve = dir => path.join(__dirname, dir);
+const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV);
 
 module.exports = {
   chainWebpack: config => {
@@ -595,9 +588,9 @@ module.exports = {
       .set('assets', resolve('src/assets'))
       .set('api', resolve('src/api'))
       .set('views', resolve('src/views'))
-      .set('components', resolve('src/components'))
-  }
-}
+      .set('components', resolve('src/components'));
+  },
+};
 ```
 
 [▲ 回顶部](#top)
@@ -607,6 +600,7 @@ module.exports = {
 如果你的项目需要跨域设置，你需要打来 `vue.config.js` `proxy` 注释 并且配置相应参数
 
 <u>**!!!注意：你还需要将 `src/config/env.development.js` 里的 `baseApi` 设置成 '/'**</u>
+
 ```javascript
 module.exports = {
   devServer: {
@@ -618,12 +612,12 @@ module.exports = {
         // ws: true, // 是否启用websockets
         changOrigin: true, // 开启代理，在本地创建一个虚拟服务端
         pathRewrite: {
-          '^/api': '/'
-        }
-      }
-    }
-  }
-}
+          '^/api': '/',
+        },
+      },
+    },
+  },
+};
 ```
 
 使用 例如: `src/api/home.js`
@@ -633,18 +627,17 @@ export function getUserInfo(params) {
   return request({
     url: '/api/userinfo',
     method: 'post',
-    data: qs.stringify(params)
-  })
+    data: qs.stringify(params),
+  });
 }
 ```
 
 [▲ 回顶部](#top)
 
-
 ### <span id="bundle">✅ 配置 打包分析 </span>
 
 ```javascript
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   chainWebpack: config => {
@@ -652,12 +645,12 @@ module.exports = {
     if (IS_PROD) {
       config.plugin('webpack-report').use(BundleAnalyzerPlugin, [
         {
-          analyzerMode: 'static'
-        }
-      ])
+          analyzerMode: 'static',
+        },
+      ]);
     }
-  }
-}
+  },
+};
 ```
 
 ```bash
@@ -679,9 +672,9 @@ npm run build
 暂时还没有研究放到自己的 cdn 服务器上。
 
 ```javascript
-const defaultSettings = require('./src/config/index.js')
-const name = defaultSettings.title || 'vue mobile template'
-const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
+const defaultSettings = require('./src/config/index.js');
+const name = defaultSettings.title || 'vue mobile template';
+const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV);
 
 // externals
 const externals = {
@@ -689,14 +682,14 @@ const externals = {
   'vue-router': 'VueRouter',
   vuex: 'Vuex',
   vant: 'vant',
-  axios: 'axios'
-}
+  axios: 'axios',
+};
 // CDN外链，会插入到index.html中
 const cdn = {
   // 开发环境
   dev: {
     css: [],
-    js: []
+    js: [],
   },
   // 生产环境
   build: {
@@ -706,17 +699,17 @@ const cdn = {
       'https://cdn.jsdelivr.net/npm/vue-router@3.1.5/dist/vue-router.min.js',
       'https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js',
       'https://cdn.jsdelivr.net/npm/vuex@3.1.2/dist/vuex.min.js',
-      'https://cdn.jsdelivr.net/npm/vant@2.4.7/lib/index.min.js'
-    ]
-  }
-}
+      'https://cdn.jsdelivr.net/npm/vant@2.4.7/lib/index.min.js',
+    ],
+  },
+};
 module.exports = {
   configureWebpack: config => {
-    config.name = name
+    config.name = name;
     // 为生产环境修改配置...
     if (IS_PROD) {
       // externals
-      config.externals = externals
+      config.externals = externals;
     }
   },
   chainWebpack: config => {
@@ -725,14 +718,14 @@ module.exports = {
      */
     config.plugin('html').tap(args => {
       if (IS_PROD) {
-        args[0].cdn = cdn.build
+        args[0].cdn = cdn.build;
       } else {
-        args[0].cdn = cdn.dev
+        args[0].cdn = cdn.dev;
       }
-      return args
-    })
-  }
-}
+      return args;
+    });
+  },
+};
 ```
 
 在 public/index.html 中添加
@@ -765,27 +758,27 @@ npm i -D babel-plugin-transform-remove-console
 
 ```javascript
 // 获取 VUE_APP_ENV 非 NODE_ENV，测试环境依然 console
-const IS_PROD = ['production', 'prod'].includes(process.env.VUE_APP_ENV)
+const IS_PROD = ['production', 'prod'].includes(process.env.VUE_APP_ENV);
 const plugins = [
   [
     'import',
     {
       libraryName: 'vant',
       libraryDirectory: 'es',
-      style: true
+      style: true,
     },
-    'vant'
-  ]
-]
+    'vant',
+  ],
+];
 // 去除 console.log
 if (IS_PROD) {
-  plugins.push('transform-remove-console')
+  plugins.push('transform-remove-console');
 }
 
 module.exports = {
-  presets: [['@vue/cli-plugin-babel/preset', {useBuiltIns: 'entry'}]],
-  plugins
-}
+  presets: [['@vue/cli-plugin-babel/preset', { useBuiltIns: 'entry' }]],
+  plugins,
+};
 ```
 
 [▲ 回顶部](#top)
@@ -802,10 +795,10 @@ module.exports = {
         .use('script-ext-html-webpack-plugin', [
           {
             // 将 runtime 作为内联引入不单独存在
-            inline: /runtime\..*\.js$/
-          }
+            inline: /runtime\..*\.js$/,
+          },
         ])
-        .end()
+        .end();
       config.optimization.splitChunks({
         chunks: 'all',
         cacheGroups: {
@@ -815,25 +808,25 @@ module.exports = {
             test: resolve('src/components'),
             minChunks: 3, //  被至少用三次以上打包分离
             priority: 5, // 优先级
-            reuseExistingChunk: true // 表示是否使用已有的 chunk，如果为 true 则表示如果当前的 chunk 包含的模块已经被抽取出去了，那么将不会重新生成新的。
+            reuseExistingChunk: true, // 表示是否使用已有的 chunk，如果为 true 则表示如果当前的 chunk 包含的模块已经被抽取出去了，那么将不会重新生成新的。
           },
           node_vendors: {
             name: 'chunk-libs',
             chunks: 'initial', // 只打包初始时依赖的第三方
             test: /[\\/]node_modules[\\/]/,
-            priority: 10
+            priority: 10,
           },
           vantUI: {
             name: 'chunk-vantUI', // 单独将 vantUI 拆包
             priority: 20, // 数字大权重到，满足多个 cacheGroups 的条件时候分到权重高的
-            test: /[\\/]node_modules[\\/]_?vant(.*)/
-          }
-        }
-      })
-      config.optimization.runtimeChunk('single')
-    })
-  }
-}
+            test: /[\\/]node_modules[\\/]_?vant(.*)/,
+          },
+        },
+      });
+      config.optimization.runtimeChunk('single');
+    });
+  },
+};
 ```
 
 [▲ 回顶部](#top)
@@ -854,53 +847,53 @@ npm i --save core-js regenerator-runtime
 ```javascript
 // 兼容 IE
 // https://github.com/zloirock/core-js/blob/master/docs/2019-03-19-core-js-3-babel-and-a-look-into-the-future.md#babelpolyfill
-import 'core-js/stable'
-import 'regenerator-runtime/runtime'
-
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 ```
 
 配置 `babel.config.js`
 
 ```javascript
-const plugins = []
+const plugins = [];
 
 module.exports = {
-  presets: [['@vue/cli-plugin-babel/preset', {useBuiltIns: 'usage', corejs: 3}]],
-  plugins
-}
+  presets: [['@vue/cli-plugin-babel/preset', { useBuiltIns: 'usage', corejs: 3 }]],
+  plugins,
+};
 ```
 
 [▲ 回顶部](#top)
 
-### <span id="pettier">✅ Eslint + Pettier 统一开发规范  </span>
+### <span id="pettier">✅ Eslint + Pettier 统一开发规范 </span>
 
 VScode 安装 `eslint` `prettier` `vetur` 插件
 
 在文件 `.prettierrc` 里写 属于你的 pettier 规则
 
- ```bash
- {
-    "printWidth": 120,
-    "tabWidth": 2,
-    "singleQuote": true,
-    "trailingComma": "none",
-    "semi": false,
-    "wrap_line_length": 120,
-    "wrap_attributes": "auto",
-    "proseWrap": "always",
-    "arrowParens": "avoid",
-    "bracketSpacing": false,
-    "jsxBracketSameLine": true,
-    "useTabs": false,
-    "overrides": [{
-        "files": ".prettierrc",
-        "options": {
-            "parser": "json"
-        }
-    }]
+```bash
+{
+   "printWidth": 120,
+   "tabWidth": 2,
+   "singleQuote": true,
+   "trailingComma": "none",
+   "semi": false,
+   "wrap_line_length": 120,
+   "wrap_attributes": "auto",
+   "proseWrap": "always",
+   "arrowParens": "avoid",
+   "bracketSpacing": false,
+   "jsxBracketSameLine": true,
+   "useTabs": false,
+   "overrides": [{
+       "files": ".prettierrc",
+       "options": {
+           "parser": "json"
+       }
+   }]
 }
- ```
- Vscode setting.json 设置
+```
+
+Vscode setting.json 设置
 
 ```bash
     "[vue]": {
@@ -921,9 +914,10 @@ VScode 安装 `eslint` `prettier` `vetur` 插件
     "vetur.format.defaultFormatter.js": "none",
     "vetur.format.defaultFormatter.ts": "none",
 ```
+
 [▲ 回顶部](#top)
 
-# 鸣谢​
+# 鸣谢 ​
 
 [vue-cli4-config](https://github.com/staven630/vue-cli4-config)
 [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
