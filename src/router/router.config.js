@@ -7,17 +7,8 @@ export const constantRouterMap = [
     path: '/',
     name: 'index-page',
     redirect: '/home',
-    component: () => import('@/components/Layout'),
+    component: () => import('@/components/NavLayout'),
     children: [
-      {
-        path: '/home',
-        name: 'home',
-        component: () => import('@/views/home'),
-        meta: {
-          title: '功能介绍页', // 页面标题
-          keepAlive: false, // keep-alive 标识
-        },
-      },
       {
         path: '/antv',
         name: 'antv',
@@ -28,6 +19,15 @@ export const constantRouterMap = [
         },
       },
     ],
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: () => import('@/views/home'),
+    meta: {
+      title: '功能介绍页', // 页面标题
+      keepAlive: false, // keep-alive 标识
+    },
   },
   {
     path: '/404',

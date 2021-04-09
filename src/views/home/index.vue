@@ -10,7 +10,7 @@
         A vue h5 template with Vant UI
       </h2>
     </div>
-    <van-cell icon="success" v-for="item in list" :key="item.cellName" :title="item.cellName" />
+    <van-cell icon="success" v-for="item in list" :key="item.cellName" :title="item.cellName" @click="goPage(item.cellHref)" />
   </div>
 </template>
 
@@ -33,7 +33,11 @@ export default {
 
   mounted() {},
 
-  methods: {},
+  methods: {
+    goPage(href){
+      this.$router.push(href )
+    }
+  },
 };
 </script>
 <style lang="scss" scoped>

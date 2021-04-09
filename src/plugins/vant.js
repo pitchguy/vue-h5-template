@@ -19,6 +19,8 @@ import {
   CheckboxGroup,
   Popover,
   Icon,
+  NavBar,
+  ShareSheet,
 } from 'vant';
 
 Vue.use(Empty);
@@ -36,4 +38,6 @@ Vue.use(Checkbox);
 Vue.use(CheckboxGroup);
 Vue.use(Popover);
 Vue.use(Icon);
+Vue.use(NavBar);
+Vue.use(ShareSheet);
 Vue.use(Tabbar).use(TabbarItem);
