@@ -21,9 +21,17 @@ export default {
   },
   data: () => ({
     swiperOptions: {
-      pagination: {
-        el: '.swiper-pagination',
-      },
+      notNextTick: true,
+      direction: 'vertical',
+      grabCursor: true,
+      setWrapperSize: truee,
+      autoHeight: true,
+      slidesPreview: 1,
+      mousewheel: false,
+      mousewheelControl: false,
+      height: window.innerheight,
+      resistanceRatio: 0,
+      observeParents: true,
       // Some Swiper option/callback...
     },
   }),
