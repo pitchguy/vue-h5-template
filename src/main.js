@@ -7,7 +7,6 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-
 // 引入全局样式
 import '@/assets/css/index.scss';
 // 设置 js中可以访问 $cdn

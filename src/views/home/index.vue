@@ -10,7 +10,13 @@
         A vue h5 template with Vant UI
       </h2>
     </div>
-    <van-cell icon="success" v-for="item in list" :key="item.cellName" :title="item.cellName" @click="goPage(item.cellHref)" />
+    <van-cell
+      icon="success"
+      v-for="item in list"
+      :key="item.cellName"
+      :title="item.cellName"
+      @click="goPage(item.cellHref)"
+    />
   </div>
 </template>
 
@@ -25,6 +31,10 @@ export default {
           cellName: '@antv/f2 图表',
           cellHref: '/antv',
         },
+        {
+          cellName: '翻页demo',
+          cellHref: '/pageTurn',
+        },
       ],
     };
   },
@@ -34,9 +44,9 @@ export default {
   mounted() {},
 
   methods: {
-    goPage(href){
-      this.$router.push(href )
-    }
+    goPage(href) {
+      this.$router.push(href);
+    },
   },
 };
 </script>

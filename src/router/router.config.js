@@ -18,6 +18,15 @@ export const constantRouterMap = [
           keepAlive: false,
         },
       },
+      {
+        path: '/pageTurn',
+        name: 'pageTurn',
+        component: () => import('@/views/pageTurn'),
+        meta: {
+          title: '翻页demo',
+          keepAlive: false,
+        },
+      },
     ],
   },
   {
