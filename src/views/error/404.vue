@@ -1,7 +1,7 @@
 <template>
   <van-empty class="re-empty" image="error" description="你要访问的页面不存在">
     <van-button round type="info" class="bottom-button" @click="routerReturn">
-      返回1
+      返回
     </van-button>
   </van-empty>
 </template>
